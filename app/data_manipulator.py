@@ -1,5 +1,5 @@
-STARTER_POSSIBLE_ANSWERS = "word lists/wordle_possible_answers.txt"
-REMAINING_POSSIBLE_ANSWERS = "word lists/remaining_possible_answers.txt"
+STARTER_POSSIBLE_ANSWERS = "../word lists/wordle_possible_answers.txt"
+REMAINING_POSSIBLE_ANSWERS = "../word lists/remaining_possible_answers.txt"
 
 
 class DataManipulator:
@@ -43,6 +43,8 @@ class DataManipulator:
     def is_letter_in_word(self, letter: str, word: str):
         return letter.lower() in word
 
+    def remove_lines_with_words_in_index(self, list_of_words:list[str], letter: str, index: int):
+        return [word for word in list_of_words if word[index] != letter]
 
 if __name__ == "__main__":
     dm = DataManipulator()
