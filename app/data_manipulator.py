@@ -45,6 +45,10 @@ class DataManipulator:
 
     def remove_lines_with_words_in_index(self, list_of_words:list[str], letter: str, index: int):
         return [word for word in list_of_words if word[index] != letter]
+    
+    def remove_lines_with_letters_not_in_index(self, list_of_words:list[str], letter: str, index: int):
+        return [word for word in list_of_words if word[index] == letter]
+
 
 if __name__ == "__main__":
     dm = DataManipulator()
