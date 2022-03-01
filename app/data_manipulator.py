@@ -6,26 +6,27 @@ class DataManipulator:
     def __init__(self):
 
         self.open_and_read_file(STARTER_POSSIBLE_ANSWERS)
-    
-    ### Init methods
-    
+
+    # Init methods
     def open_and_read_file(self, filename):
         with open(filename, "r") as pa:
-            self.write_remaining_possible_answers(starter_file=pa, filename=REMAINING_POSSIBLE_ANSWERS)
-             
+            self.write_remaining_possible_answers(
+                starter_file=pa,
+                filename=REMAINING_POSSIBLE_ANSWERS
+                )
+
     def write_remaining_possible_answers(self, starter_file, filename):
         with open(filename, "w") as rpa:
             for line in starter_file:
                 rpa.write(line)
-        
 
-    ### Use methods
-    
-    def remove_excluded_answers(self):
-        pass
+    # Use methods
+    def remove_excluded_answers(self, list_of_words: list[str], letter: str):
+        return [word for word in list_of_words if letter not in word]
 
     def is_letter_in_word(self, letter: str, word: str):
         return letter.lower() in word
+
 
 if __name__ == "__main__":
     dm = DataManipulator()

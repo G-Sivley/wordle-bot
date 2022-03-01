@@ -22,3 +22,15 @@ class TestDataManipulator(unittest.TestCase):
         self.assertEqual(self.dm.is_letter_in_word("a", "plane"), True)
         self.assertEqual(self.dm.is_letter_in_word("z", "coins"), False)
         self.assertEqual(self.dm.is_letter_in_word("A", "plane"), True)
+    
+    def test_remove_excluded_answers(self):
+        self.assertEqual(self.dm.remove_excluded_answers([
+            "alpha",
+            "wow",
+            "brittle",
+        ], "a"), ["wow", "brittle"])
+        self.assertEqual(self.dm.remove_excluded_answers([
+            "alpha",
+            "heart",
+            "hobbs",
+        ], "h"), [])
