@@ -1,32 +1,33 @@
 import platform
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+
 
 class SeleniumBot:
-
     def __init__(self):
-        self.driver = self._init_selenium_driver()
+        service = Service(self.create_path())
+        self.driver = webdriver.Chrome(service=service)
 
-    def _init_selenium_driver(self):
-
+    def create_path(self):
         PATH = ""
 
         if platform.system() == "Darwin":
             # if macos show app verification problem
             # then go to driver/macOS using terminal
             # then execute: xattr -d com.apple.quarantine chromedriver
-            PATH = "driver/MacOS/chromedriver"
+            PATH = "app/driver/MacOS/chromedriver"
 
         # please test in windows and Linux os
         elif platform.system() == "Windows":
-            PATH = "driver/Windows/chromedriver.exe"
+            PATH = "app/driver/Windows/chromedriver.exe"
 
         elif platform.system() == "Linux":
-            PATH = "driver/Linux/chromedriver"
-        
+            PATH = "app/driver/Linux/chromedriver"
+
         else:
             print("We only support Windows, MacOS and Linux OS!!")
 
-        return webdriver.Chrome(PATH)
+        return PATH
 
     def visit_website(self, url: str):
 
@@ -36,4 +37,4 @@ class SeleniumBot:
 
 if __name__ == '__main__':
     sb = SeleniumBot()
-    sb.visit_website("https://google.com")
+    sb.visit_website("https://www.nytimes.com/games/wordle/index.html")
