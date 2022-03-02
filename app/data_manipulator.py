@@ -1,3 +1,6 @@
+import random
+
+
 STARTER_POSSIBLE_ANSWERS = "word lists/wordle_possible_answers.txt"
 REMAINING_POSSIBLE_ANSWERS = "word lists/remaining_possible_answers.txt"
 
@@ -40,10 +43,19 @@ class DataManipulator:
     ):
         return [word for word in list_of_words if letter not in word]
 
+    # Fix this
+    def return_random_line(self):
+        lines = open(REMAINING_POSSIBLE_ANSWERS).read().splitlines()
+        myline = random.choice(lines)
+        return myline
+
     def is_letter_in_word(self, letter: str, word: str):
         return letter.lower() in word
 
 
 if __name__ == "__main__":
     dm = DataManipulator()
-    dm.write_with_removed_words("b")
+    while True:
+        letter = input("Letter: ")
+        dm.write_with_removed_words(letter)
+        print(dm.return_random_line())
