@@ -1,8 +1,8 @@
 import unittest
 import pathlib as pl
-from app.data_manipulator import DataManipulator
 import sys
 sys.path.append("../")
+from app.data_manipulator import DataManipulator
 
 
 class TestDataManipulator(unittest.TestCase):
@@ -34,3 +34,23 @@ class TestDataManipulator(unittest.TestCase):
             "heart",
             "hobbs",
         ], "h"), [])
+
+    def test_remove_lines_with_words_in_index(self):
+        self.assertEqual(self.dm.remove_lines_with_words_in_index([
+            "artsy",
+            "augur",
+            "birch",
+            "conch",
+            "comma",
+            "crawl"
+            ], "r", 1), ["augur", "birch", "conch", "comma"])
+
+        self.assertEqual(self.dm.remove_lines_with_words_in_index([
+            "could",
+            "cough",
+            "craze",
+            "owner",
+            "pause",
+            "pique"
+            ], "u", 2), ["craze", "owner", "pique"])
+
