@@ -1,7 +1,5 @@
 import unittest
 import pathlib as pl
-import sys
-sys.path.append("../")
 from app.data_manipulator import DataManipulator
 
 
@@ -54,3 +52,20 @@ class TestDataManipulator(unittest.TestCase):
             "pique"
             ], "u", 2), ["craze", "owner", "pique"])
 
+    def test_remove_lines_with_letter_not_in_index(self):
+        self.assertEqual(self.dm.remove_lines_with_letters_not_in_index([
+            "artsy",
+            "augur",
+            "birch",
+            "conch",
+            "comma",
+            "crawl"
+        ], "a", 2), ["crawl"])
+        self.assertEqual(self.dm.remove_lines_with_letters_not_in_index([
+            "artsy",
+            "augur",
+            "birch",
+            "conch",
+            "comma",
+            "crawl"
+        ], "r", 4), ["augur"])
