@@ -1,6 +1,7 @@
 import unittest
 import pathlib as pl
 from app.data_manipulator import DataManipulator
+from app.letter import Letter
 
 
 class TestDataManipulator(unittest.TestCase):
@@ -14,6 +15,19 @@ class TestDataManipulator(unittest.TestCase):
     def test_write_remaining_possible_answers(self):
         path = pl.Path("word lists/remaining_possible_answers.txt")
         self.assertEquals((str(path), path.is_file()), (str(path), True))
+
+    def test_remove_words(self):
+        letter = Letter("a", "r", 0)
+        list_of_words = ["ant", "car", "ape"]
+        self.assertEqual(self.dm.remove_words(list_of_words, letter), [])
+
+        letter.color = "y"
+        self.assertEqual(self.dm.remove_words(list_of_words, letter), ["car"])
+
+        letter.color = "g"
+        self.assertEqual(
+            self.dm.remove_words(list_of_words, letter),
+            ["ant", "ape"])
 
     def test_is_letter_in_word(self):
         self.assertEqual(self.dm.is_letter_in_word("a", "abott"), True)
@@ -42,6 +56,12 @@ class TestDataManipulator(unittest.TestCase):
             "comma",
             "crawl"
             ], "r", 1), ["augur", "birch", "conch", "comma"])
+
+    def test_remove_words_without_letter(self):
+        list_of_words = ["wow", "car", "bar"]
+        self.assertEqual(
+            self.dm.remove_words_without_letter(list_of_words, "a"),
+            ["car", "bar"])
 
         self.assertEqual(self.dm.remove_lines_with_words_in_index([
             "could",
