@@ -1,5 +1,8 @@
 import unittest
-from app.letter import Letter
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../app')))
+from letter import Letter
 
 
 class Test_Letter(unittest.TestCase):

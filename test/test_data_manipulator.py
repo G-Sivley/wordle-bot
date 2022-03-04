@@ -1,7 +1,11 @@
 import unittest
 import pathlib as pl
-from app.data_manipulator import DataManipulator
-from app.letter import Letter
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../app')))
+
+from data_manipulator import DataManipulator
+from letter import Letter
 
 
 class TestDataManipulator(unittest.TestCase):
